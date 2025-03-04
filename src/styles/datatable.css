@@ -1,0 +1,61 @@
+/* Enhanced datatable.css */
+.MuiDataGrid-virtualScroller {
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+}
+
+.MuiDataGrid-root {
+  border: none !important;
+  border-radius: 16px !important;
+  background: linear-gradient(145deg, #ffffff, #f8f9fc) !important;
+}
+
+.MuiDataGrid-cell {
+  white-space: normal !important;
+  word-wrap: break-word !important;
+  overflow: visible !important;
+  line-height: 1.6 !important;
+  padding: 20px 16px !important;
+  border-bottom: 1px solid rgba(224, 224, 224, 0.5) !important;
+}
+
+.MuiDataGrid-columnHeader {
+  white-space: normal !important;
+  word-wrap: break-word !important;
+  overflow: visible !important;
+  line-height: 1.4 !important;
+  padding: 0 16px !important;
+}
+
+.MuiDataGrid-cell:focus,
+.MuiDataGrid-cell:focus-within,
+.MuiDataGrid-columnHeader:focus,
+.MuiDataGrid-columnHeader:focus-within {
+  outline: none !important;
+}
+
+.MuiDataGrid-row {
+  min-height: 80px !important;
+  transition: all 0.2s ease !important;
+}
+
+.MuiDataGrid-virtualScroller::-webkit-scrollbar {
+  width: 10px;
+  background: transparent;
+}
+
+.MuiDataGrid-virtualScroller::-webkit-scrollbar-track {
+  background: rgba(241, 245, 249, 0.5);
+  border-radius: 12px;
+  margin: 8px;
+}
+
+.MuiDataGrid-virtualScroller::-webkit-scrollbar-thumb {
+  background: #64748b;
+  border-radius: 12px;
+  border: 2px solid #ffffff;
+}
+
+.MuiDataGrid-virtualScroller::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
