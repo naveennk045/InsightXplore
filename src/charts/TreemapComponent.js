@@ -1,5 +1,5 @@
 import React from "react";
-import { Treemap, Tooltip } from "recharts";
+import { Treemap, Tooltip, ResponsiveContainer } from "recharts";
 
 const TreemapComponent = ({ data, selectedSector }) => {
   const groupedData = data.reduce((acc, item) => {
@@ -19,19 +19,19 @@ const TreemapComponent = ({ data, selectedSector }) => {
   }));
 
   return (
-    <div>
+    <div style={{ width: '100%', height: '100%' }}>
       <h3>Insights by Region and Sector {selectedSector ? `for ${selectedSector}` : ""}</h3>
-      <Treemap
-        width={600}
-        height={300}
-        data={selectedSector ? chartData.filter(d => d.children.some(c => c.name === selectedSector)) : chartData}
-        dataKey="value"
-        ratio={4 / 3}
-        stroke="#fff"
-        fill="#696cff"
-      >
-        <Tooltip />
-      </Treemap>
+      <ResponsiveContainer width="100%" height={500}>
+        <Treemap
+          data={selectedSector ? chartData.filter(d => d.children.some(c => c.name === selectedSector)) : chartData}
+          dataKey="value"
+          ratio={4 / 3}
+          stroke="#fff"
+          fill="#696cff"
+        >
+          <Tooltip />
+        </Treemap>
+      </ResponsiveContainer>
     </div>
   );
 };

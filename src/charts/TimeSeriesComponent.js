@@ -1,5 +1,5 @@
 import React from "react";
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from "recharts";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 
 const TimeSeriesComponent = ({ data, selectedSector }) => {
   const timeData = data.reduce((acc, item) => {
@@ -18,16 +18,18 @@ const TimeSeriesComponent = ({ data, selectedSector }) => {
     .sort((a, b) => a.year - b.year);
 
   return (
-    <div>
+    <div style={{ width: '100%', height: '100%' }}>
       <h3>Insights Over Time {selectedSector ? `for ${selectedSector}` : ""}</h3>
-      <LineChart width={600} height={300} data={chartData}>
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="year" />
-        <YAxis />
-        <Tooltip />
-        <Legend />
-        <Line type="monotone" dataKey="count" stroke="#696cff" activeDot={{ r: 8 }} />
-      </LineChart>
+      <ResponsiveContainer width="100%" height={400}>
+        <LineChart data={chartData}>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="year" />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <Line type="monotone" dataKey="count" stroke="#696cff" activeDot={{ r: 8 }} />
+        </LineChart>
+      </ResponsiveContainer>
     </div>
   );
 };

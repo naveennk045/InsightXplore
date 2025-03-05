@@ -1,5 +1,5 @@
 import React from "react";
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from "recharts";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 
 const BarChartComponent = ({ data, selectedSector, setSelectedSector }) => {
   const chartData = Object.entries(
@@ -15,20 +15,22 @@ const BarChartComponent = ({ data, selectedSector, setSelectedSector }) => {
   };
 
   return (
-    <div>
+    <div style={{ width: '100%', height: '100%' }}>
       <h3>Insights by Sector</h3>
-      <BarChart width={600} height={300} data={chartData} onClick={handleBarClick}>
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="sector" angle={-45} textAnchor="end" height={70} />
-        <YAxis />
-        <Tooltip />
-        <Legend />
-        <Bar
-          dataKey="count"
-          fill="#696cff"
-          opacity={(d) => (selectedSector && d.sector !== selectedSector ? 0.3 : 1)}
-        />
-      </BarChart>
+      <ResponsiveContainer width="100%" height={600}>
+        <BarChart data={chartData} onClick={handleBarClick}>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="sector" angle={-45} textAnchor="end" height={70} />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <Bar
+            dataKey="count"
+            fill="#696cff"
+            opacity={(d) => (selectedSector && d.sector !== selectedSector ? 0.3 : 1)}
+          />
+        </BarChart>
+      </ResponsiveContainer>
     </div>
   );
 };

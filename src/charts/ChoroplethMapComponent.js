@@ -61,7 +61,7 @@ const ChoroplethMapComponent = ({ data, selectedSector }) => {
     <div>
       <h3>Intensity by Country {selectedSector ? `for ${selectedSector}` : ""}</h3>
       {geoData && (
-        <MapContainer center={[20, 0]} zoom={2} style={{ height: "400px", width: "100%" }}>
+        <MapContainer center={[20, 0]} zoom={2} style={{ height: "600px", width: "100%" }}>
           <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
           <GeoJSON data={geoData} style={style} onEachFeature={onEachFeature} />
         </MapContainer>

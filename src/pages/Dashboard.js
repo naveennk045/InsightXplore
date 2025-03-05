@@ -36,6 +36,7 @@ const Dashboard = ({ section }) => {
   // Overview Widgets
   const totalInsights = data.length;
   const avgIntensity = (data.reduce((sum, item) => sum + (item.intensity || 0), 0) / totalInsights).toFixed(2);
+  const numSectors = new Set(data.map(item => item.sector)).size;
   const topSector = Object.entries(
     data.reduce((acc, item) => {
       const sector = item.sector || "Unknown";
@@ -43,59 +44,66 @@ const Dashboard = ({ section }) => {
       return acc;
     }, {})
   ).sort((a, b) => b[1] - a[1])[0]?.[0] || "N/A";
-  const topRegion = Object.entries(
-    data.reduce((acc, item) => {
-      const region = item.region || "Unknown";
-      acc[region] = (acc[region] || 0) + 1;
-      return acc;
-    }, {})
-  ).sort((a, b) => b[1] - a[1])[0]?.[0] || "N/A";
 
   const renderOverview = () => (
     <Box>
-      <Grid container spacing={3}>
-        <Grid item xs={12} sm={6} md={3}>
+      <div className="welcome-section">
+        <Typography variant="h1" sx={{ mb: 4 }}>
+          Dashboard Overview
+        </Typography>
+        <Typography variant="body1" sx={{ mb: 4 }}>
+          Welcome to the InsightXplorer Dashboard. This dashboard provides insights into various sectors, topics, and regions based on the data collected. Below is a summary of the key metrics and trends.
+        </Typography>
+      </div>
+
+      <Grid container spacing={3} justifyContent="center">
+        {/* First Row: Two Cards */}
+        <Grid item xs={12} sm={6} md={5}>
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-            <Card sx={{ backgroundColor: "#696cff", color: "#fff" }}>
-              <CardContent>
+            <Card sx={{ background: "linear-gradient(135deg, #4361ee 0%, #7b93f5 100%)", color: "#fff", borderRadius: 2 }}>
+              <CardContent sx={{ textAlign: "center", display: "flex", flexDirection: "column", justifyContent: "center", minHeight: "120px" }}>
                 <Typography variant="h6">Total Insights</Typography>
                 <Typography variant="h4">{totalInsights}</Typography>
               </CardContent>
             </Card>
           </motion.div>
         </Grid>
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid item xs={12} sm={6} md={5}>
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }}>
-            <Card sx={{ backgroundColor: "#03c3ec", color: "#fff" }}>
-              <CardContent>
+            <Card sx={{ background: "linear-gradient(135deg, #4895ef 0%, #72c2f5 100%)", color: "#fff", borderRadius: 2 }}>
+              <CardContent sx={{ textAlign: "center", display: "flex", flexDirection: "column", justifyContent: "center", minHeight: "120px" }}>
                 <Typography variant="h6">Average Intensity</Typography>
                 <Typography variant="h4">{avgIntensity}</Typography>
               </CardContent>
             </Card>
           </motion.div>
         </Grid>
-        <Grid item xs={12} sm={6} md={3}>
+
+        {/* Second Row: Two Cards */}
+        <Grid item xs={12} sm={6} md={5}>
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }}>
-            <Card sx={{ backgroundColor: "#ffab00", color: "#fff" }}>
-              <CardContent>
+            <Card sx={{ background: "linear-gradient(135deg, #ff9f1c 0%, #ffb75e 100%)", color: "#fff", borderRadius: 2 }}>
+              <CardContent sx={{ textAlign: "center", display: "flex", flexDirection: "column", justifyContent: "center", minHeight: "120px" }}>
+                <Typography variant="h6">Number of Sectors</Typography>
+                <Typography variant="h4">{numSectors}</Typography>
+              </CardContent>
+            </Card>
+          </motion.div>
+        </Grid>
+        <Grid item xs={12} sm={6} md={5}>
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.3 }}>
+            <Card sx={{ background: "linear-gradient(135deg, #4cc9f0 0%, #7be2f5 100%)", color: "#fff", borderRadius: 2 }}>
+              <CardContent sx={{ textAlign: "center", display: "flex", flexDirection: "column", justifyContent: "center", minHeight: "120px" }}>
                 <Typography variant="h6">Top Sector</Typography>
                 <Typography variant="h4">{topSector}</Typography>
               </CardContent>
             </Card>
           </motion.div>
         </Grid>
-        <Grid item xs={12} sm={6} md={3}>
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.3 }}>
-            <Card sx={{ backgroundColor: "#8592ad", color: "#fff" }}>
-              <CardContent>
-                <Typography variant="h6">Top Region</Typography>
-                <Typography variant="h4">{topRegion}</Typography>
-              </CardContent>
-            </Card>
-          </motion.div>
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <Card>
+
+        {/* Charts Section */}
+        <Grid item xs={12}>
+          <Card sx={{ borderRadius: 2 }}>
             <CardContent>
               <BarChartComponent
                 data={data}
@@ -105,15 +113,15 @@ const Dashboard = ({ section }) => {
             </CardContent>
           </Card>
         </Grid>
-        <Grid item xs={12} md={6}>
-          <Card>
+        <Grid item xs={12}>
+          <Card sx={{ borderRadius: 2 }}>
             <CardContent>
               <PieChartComponent data={filteredData} selectedSector={selectedSector} />
             </CardContent>
           </Card>
         </Grid>
         <Grid item xs={12}>
-          <Card>
+          <Card sx={{ borderRadius: 2 }}>
             <CardContent>
               <TimeSeriesComponent data={filteredData} selectedSector={selectedSector} />
             </CardContent>
@@ -129,7 +137,7 @@ const Dashboard = ({ section }) => {
         return renderOverview();
       case "table":
         return (
-          <Card>
+          <Card sx={{ borderRadius: 2 }}>
             <CardContent>
               <Typography variant="h3" gutterBottom>Data Table</Typography>
               <DataTable data={filteredData} />
@@ -138,7 +146,7 @@ const Dashboard = ({ section }) => {
         );
       case "bar":
         return (
-          <Card>
+          <Card sx={{ borderRadius: 2 }}>
             <CardContent>
               <BarChartComponent
                 data={data}
@@ -150,7 +158,7 @@ const Dashboard = ({ section }) => {
         );
       case "pie":
         return (
-          <Card>
+          <Card sx={{ borderRadius: 2 }}>
             <CardContent>
               <PieChartComponent data={filteredData} selectedSector={selectedSector} />
             </CardContent>
@@ -158,7 +166,7 @@ const Dashboard = ({ section }) => {
         );
       case "scatter":
         return (
-          <Card>
+          <Card sx={{ borderRadius: 2 }}>
             <CardContent>
               <ScatterPlotComponent data={filteredData} selectedSector={selectedSector} />
             </CardContent>
@@ -166,7 +174,7 @@ const Dashboard = ({ section }) => {
         );
       case "heatmap":
         return (
-          <Card>
+          <Card sx={{ borderRadius: 2 }}>
             <CardContent>
               <HeatmapComponent data={filteredData} selectedSector={selectedSector} />
             </CardContent>
@@ -174,7 +182,7 @@ const Dashboard = ({ section }) => {
         );
       case "choropleth":
         return (
-          <Card>
+          <Card sx={{ borderRadius: 2 }}>
             <CardContent>
               <ChoroplethMapComponent data={filteredData} selectedSector={selectedSector} />
             </CardContent>
@@ -182,7 +190,7 @@ const Dashboard = ({ section }) => {
         );
       case "timeseries":
         return (
-          <Card>
+          <Card sx={{ borderRadius: 2 }}>
             <CardContent>
               <TimeSeriesComponent data={filteredData} selectedSector={selectedSector} />
             </CardContent>
@@ -190,7 +198,7 @@ const Dashboard = ({ section }) => {
         );
       case "donut":
         return (
-          <Card>
+          <Card sx={{ borderRadius: 2 }}>
             <CardContent>
               <DonutChartComponent data={filteredData} selectedSector={selectedSector} />
             </CardContent>
@@ -198,7 +206,7 @@ const Dashboard = ({ section }) => {
         );
       case "area":
         return (
-          <Card>
+          <Card sx={{ borderRadius: 2 }}>
             <CardContent>
               <AreaChartComponent data={filteredData} selectedSector={selectedSector} />
             </CardContent>
@@ -206,7 +214,7 @@ const Dashboard = ({ section }) => {
         );
       case "bubble":
         return (
-          <Card>
+          <Card sx={{ borderRadius: 2 }}>
             <CardContent>
               <BubbleChartComponent data={filteredData} selectedSector={selectedSector} />
             </CardContent>
@@ -214,7 +222,7 @@ const Dashboard = ({ section }) => {
         );
       case "treemap":
         return (
-          <Card>
+          <Card sx={{ borderRadius: 2 }}>
             <CardContent>
               <TreemapComponent data={filteredData} selectedSector={selectedSector} />
             </CardContent>

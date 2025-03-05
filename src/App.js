@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import Sidebar from "./components/Sidebar";
 import Dashboard from "./pages/Dashboard";
+import Upload from "./pages/Upload";
+import ChartDescriptions from "./pages/ChartDescriptions";
 import "./styles/global.css";
 
 const theme = createTheme({
@@ -31,7 +33,9 @@ const App = () => {
           <div className={`content ${isCollapsed ? "collapsed" : ""}`}>
             <Routes>
               <Route path="/" element={<Dashboard section="overview" />} />
-              <Route path="/table" element={<Dashboard section="table" />} /> {/* Added Data Table route */}
+              <Route path="/upload" element={<Upload />} />
+              <Route path="/chart-descriptions" element={<ChartDescriptions />} />
+              <Route path="/table" element={<Dashboard section="table" />} />
               <Route path="/bar" element={<Dashboard section="bar" />} />
               <Route path="/pie" element={<Dashboard section="pie" />} />
               <Route path="/scatter" element={<Dashboard section="scatter" />} />

@@ -1,70 +1,212 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## **📄 InsightXplorer – Interactive Data Dashboard**
 
-## Available Scripts
+🚀 **InsightXplorer** is a **interactive dashboard** for analyzing **global business, energy, and industry insights** using **Flask (Backend), MySQL (Database), and React + D3.js (Frontend).**
 
-In the project directory, you can run:
+It features **interactive charts, advanced filters, and a premium UI** to explore data trends effectively.
 
-### `yarn start`
+* * *
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## **📂 Project Structure**
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```
+/blackcoffer-dashboard
+│── /public
+│── /src
+│   │── /components         # Reusable UI components (Sidebar, Table, Filters, Header)
+│   │── /pages              # Dashboard and other pages
+│   │── /charts             # D3.js & Recharts chart components
+│   │── /styles             # CSS & theme styles
+│   │── /utils              # Helper functions (API calls, formatting)
+│   │── App.js              # Main React app component
+│   │── index.js            # Entry point
+│── /backend                # Flask backend (separate directory)
+│   │── /dataset               # JSON data 
+│   │── app.py              # Main Flask application
+│── package.json            # React dependencies
+│── requirements.txt        # Python dependencies
+│── README.md               # Project documentation
+```
 
-### `yarn test`
+* * *
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## **🛠️ Technologies Used**
 
-### `yarn build`
+### **Frontend (React + Material-UI + D3.js)**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* **React.js** – UI development
+* **Material-UI (MUI)** – Professional design system
+* **D3.js, Recharts, Plotly.js** – Data visualization
+* **React-Leaflet** – Interactive maps
+* **Axios** – API integration
+* **Zustand** – State management
+* **Framer Motion** – Animations & transitions
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### **Backend (Flask + MySQL)**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* **Flask** – API framework
+* **Flask-SQLAlchemy** – ORM for MySQL
+* **MySQL** – Stores structured JSON data
+* **Pandas** – Data preprocessing
+* **Flask-CORS** – Enables frontend-backend communication
 
-### `yarn eject`
+* * *
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## **🎨 Features**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### **1️⃣ Professional UI & Layout**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+* **Vuexy-style premium design**
+* **Collapsible sidebar navigation**
+* **Curved edges (`border-radius: 12px`) for all containers**
+* **Smooth animations with Framer Motion**
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### **2️⃣ Interactive Charts (D3.js + Recharts)**
 
-## Learn More
+✔ **Bar Chart** – Frequency of insights by sector  
+✔ **Pie Chart** – PESTLE framework distribution  
+✔ **Scatter Plot** – Intensity vs Likelihood (size = relevance)  
+✔ **Heatmap** – Sector vs Region  
+✔ **Choropleth Map** – Intensity by Country  
+✔ **Time Series Plot** – Insights over time  
+✔ **Violin Plot** – Intensity distribution by end year  
+✔ **Stacked Bar Chart** – Sector vs Topic  
+✔ **Box Plot** – Intensity by Sector
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### **3️⃣ Data Table (Material-UI)**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+✔ **Curved edges & professional UI**  
+✔ **Sortable & searchable table**  
+✔ **Export data as CSV**  
+✔ **Horizontal scrolling for large datasets**
 
-### Code Splitting
+### **4️⃣ Advanced Filters**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+✔ **Dropdown filters for Year, Country, Topic, Region, Sector, PEST, SWOT**  
+✔ **Live filtering of table & charts**  
+✔ **Search bar for quick access**
 
-### Analyzing the Bundle Size
+### **5️⃣ API Integration**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+✔ **Fetch data from Flask API (`/api/data`)**  
+✔ **Upload new JSON data (`/api/upload`)**
 
-### Making a Progressive Web App
+### **6️⃣ Export & Reports**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+✔ **Download table data as CSV**  
+✔ **Save charts as PNG/SVG**  
+✔ **Print reports directly from the dashboard**
 
-### Advanced Configuration
+* * *
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## **📌 API Endpoints**
 
-### Deployment
+### **1️⃣ Fetch All Data**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```http
+GET /api/data
+```
 
-### `yarn build` fails to minify
+📌 **Response Example**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```json
+[
+  {
+    "id": 1795,
+    "title": "U.S. natural gas consumption is expected to increase.",
+    "sector": "Energy",
+    "topic": "gas",
+    "intensity": 6,
+    "likelihood": 3,
+    "relevance": 2,
+    "country": "United States",
+    "region": "Northern America",
+    "source": "EIA",
+    "published": "2017"
+  }
+]
+```
+
+### **2️⃣ Upload New JSON Data**
+
+```http
+POST /api/upload
+```
+
+📌 **Request Example**
+
+```json
+{
+  "file": "jsondata.json"
+}
+```
+
+📌 **Response Example**
+
+```json
+{
+  "message": "Data uploaded successfully",
+  "rows_inserted": 500
+}
+```
+
+* * *
+
+## **📌 How to Run the Project**
+
+### **1️⃣ Backend (Flask)**
+
+1. Navigate to the backend folder:
+    
+    ```sh
+    cd backend
+    ```
+    
+2. Install dependencies:
+    
+    ```sh
+    pip install -r requirements.txt
+    ```
+    
+3. Start Flask API:
+    
+    ```sh
+    python app.py
+    ```
+    
+
+✅ **API will run on:** `http://127.0.0.1:5000/api/data`
+
+* * *
+
+### **2️⃣ Frontend (React)**
+
+1. Navigate to the React folder:
+    
+    ```sh
+    cd blackcoffer-dashboard
+    ```
+    
+2. Install dependencies:
+    
+    ```sh
+    yarn install
+    ```
+    
+3. Start the frontend:
+    
+    ```sh
+    yarn start
+    ```
+    
+
+✅ **Dashboard will open at:** `http://localhost:3000`
+
+* * *
+
+## **📌 Next Steps**
+
+* **🚀 Implement Advanced Filters** (In Progress)
+* **📊 Add Export & Reporting Features** (Upcoming)
+
+* * *

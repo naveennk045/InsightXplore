@@ -2,13 +2,15 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import {
   Dashboard as DashboardIcon, TableChart, BarChart, PieChart, ScatterPlot, GridOn, Map, Timeline,
-  DonutLarge, StackedLineChart, BubbleChart, AccountTree
+  DonutLarge, StackedLineChart, BubbleChart, AccountTree, CloudUpload, Description
 } from "@mui/icons-material";
 import "../styles/sidebar.css";
 
 const Sidebar = ({ isCollapsed, setIsCollapsed }) => {
   const sections = [
+    { path: "/upload", label: "Upload", icon: <CloudUpload /> },
     { path: "/", label: "Overview", icon: <DashboardIcon /> },
+    { path: "/chart-descriptions", label: "Chart Descriptions", icon: <Description /> },
     { path: "/table", label: "Data Table", icon: <TableChart /> },
     { path: "/bar", label: "Bar Chart", icon: <BarChart /> },
     { path: "/pie", label: "Pie Chart", icon: <PieChart /> },
